@@ -7,6 +7,7 @@ const SubcategoriesRoutes = require('./routes/SubcategoryRoutes');
 const productsRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/OrderRoutes');
 const customerRoutes = require('./routes/CustomerRoutes'); 
+const port = process.env.PORT;
 
 const app = express();
 
@@ -25,13 +26,13 @@ app.use('/api/category', CategoryRoutes)
 app.use('/api/subcat', SubcategoriesRoutes);
 app.use('/api/product', productsRoutes);
 app.use('/api/order', orderRoutes);
-app.use('/customer', customerRoutes);
+app.use('/api/customer', customerRoutes);
 
 
 
 
 
-app.listen(process.env.PORT, () => {
-    console.log('Server runing on port', process.env.PORT);
+app.listen(port, () => {
+    console.log(`Server runing on port, ${port}`);
 })
  

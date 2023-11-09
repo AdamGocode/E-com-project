@@ -5,17 +5,17 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 
-// const maxAge = 3 * 24 * 60 * 60;
-// const createToken = (id) => {
-//     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: maxAge });
-// }
+const maxAge = 4 * 60 * 60;
+const createToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: maxAge });
+}
 
 
 module.exports.signup_post = async (req, res) =>  { 
   const { first_name, last_name, email, user_name, role, password } = req.body;
   try  {
      const user = await User.create({ first_name, last_name, email, role, user_name, password });
-        res.status(201).json(user);
+        res.status(201).json({message: 'user created successfully'});
     } catch (err) {
          console.log(err);
          res.status(400).send('error, user not created');
@@ -37,7 +37,7 @@ module.exports.login_post = async  (req, res) => {
       }
   } 
 catch (err) {
-  console.log("hello")
+  res.status(401).json({message: 'invalid credentials'})
  } 
 }
 

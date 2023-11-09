@@ -16,6 +16,7 @@ const customerSchema = new mongoose.Schema ({
     email: {
         type:String,
         trim:true,
+        unique: true,
         required:[true, 'Please enter your password'],
         validate:[isEmail, 'Please enter a valid email']
     },
@@ -24,7 +25,7 @@ const customerSchema = new mongoose.Schema ({
         trim:true,
         required:[true, 'Please enter your password'],
         },
-    userName: {
+    user_name: {
         type:String,
         trim:true,
         required:true,
